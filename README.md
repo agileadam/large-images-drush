@@ -7,7 +7,7 @@ This provides two drush commands.
 * Both of these commands require you to specify the directory to search, and the minimum size you'd like to operate on.
 * Both of these commands also allow you to specify a maxdepth.
 * The compression command takes an additional (required) "quality" argument. This can be anything from 1 to 100 (lowest output quality to highest output quality). For general use the recommended value is somewhere around 80 or 90.
-* Run either command with --help to see all options. For example: `drush large-images-list --help`
+* Run either command with `--help` to see all options. For example: `drush large-images-list --help`
 
 ## Warning
 
