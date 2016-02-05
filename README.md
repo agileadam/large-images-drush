@@ -23,6 +23,7 @@ Also, you may want to back up your Drupal database and whatever directory you're
 
 - Drupal 7 site
 - drush
+- php with gd library
 - `find` command
 - `du` command
 - `sort` command
