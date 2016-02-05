@@ -9,15 +9,12 @@ This provides two drush commands.
 * The compression command takes an additional (required) "quality" argument. This can be anything from 1 to 100 (lowest output quality to highest output quality). For general use the recommended value is somewhere around 80 or 90.
 * Run either command with --help to see all options. For example: `drush large-images-list --help`
 
-## WARNING
+## Warning
 
-I suggest running `large-images-list` before running `large-images-compress`. This does not modify anything on your system.
-
-These commands work fine in the environments where I've used them. This does not mean it'll work perfectly for you!
-
-Because of the disruptive nature of the `large-images-compress` command, you should test this drush command in a test directory within your environment before trying to use it "for real."
-
-Also, you may want to back up your Drupal database and whatever directory you're operating on before executing this command.
+- Run `large-images-list` before running `large-images-compress`
+- These commands work fine in the environments where I've used them. This does not mean they'll work perfectly for you! Test before using!
+- I recommend you back up your Drupal database and whatever directory you're operating on before executing `large-images-compress`
+- `large-images-compress` is not a "smart" command. It simply overwrites the image with the desired output quality and updates the database. It does not look at the current compression level before attempting to generate the new version, though I may add this functionality to prevent trying to go from a lower quality to a higher one.
 
 ## Requirements
 
