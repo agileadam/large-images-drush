@@ -12,7 +12,7 @@ The compression command takes an additional (required) "quality" argument. This 
 
 ## WARNING
 
-I suggest running `large-images-list` before running large-images-compress. This does not modify anything on your system.
+I suggest running `large-images-list` before running `large-images-compress`. This does not modify anything on your system.
 
 These commands work fine in the environments where I've used them. This does not mean it'll work perfectly for you!
 
