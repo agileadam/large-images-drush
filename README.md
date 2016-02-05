@@ -29,10 +29,10 @@ Also, you may want to back up your Drupal database and whatever directory you're
 - `sort` command
 - `cut` command
 
-## Examples
-
+## Example 1
 ![Example 1](example1.png)
 
+## Example 2
 ![Example 2](example2.png)
 
 ![Example 3](example3.png)
