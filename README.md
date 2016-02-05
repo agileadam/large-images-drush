@@ -26,6 +26,12 @@ This provides two drush commands.
 - `sort` command
 - `cut` command
 
+## Installation
+
+1. Place the `large_images.drush.inc` file into `~/.drush/`
+1. Run `drush cc drush`
+1. Run `drush large-images-list --help` to see if it's recognized
+
 ## Example 1
 ![Example 1](example1.png)
 
