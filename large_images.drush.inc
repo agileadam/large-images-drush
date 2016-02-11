@@ -13,7 +13,7 @@ function large_images_drush_command() {
     ),
     'required-arguments' => TRUE,
     'options' => array(
-      'maxdepth' => 'Descent at most N levels (default is no limit; use 1 if you want current directory only)',
+      'maxdepth' => '(--maxdepth=N) Descend at most N levels (default is no limit; use 1 if you want current directory only)',
     ),
     'examples' => array(
       'drush lil . 8M' => 'List files that are larger than 8 MB',
@@ -30,7 +30,8 @@ function large_images_drush_command() {
     ),
     'required-arguments' => TRUE,
     'options' => array(
-      'maxdepth' => 'Descent at most N levels (default is no limit; use 1 if you want current directory only)',
+      'maxdepth' => '(--maxdepth=N) Descend at most N levels (default is no limit; use 1 if you want current directory only)',
+      'backup' => '(--backup) Create a backup file (_lgbak) before overwriting the original file',
     ),
     'examples' => array(
       'drush lic . 8M' => 'List files that are larger than 8 MB',
@@ -59,7 +60,7 @@ function large_images_find_images($dir, $min_size) {
     drush_die();
   }
 
-  $depth = drush_get_option('depth', 999999);
+  $depth = drush_get_option('maxdepth', 999999);
 
   drush_shell_exec('find ' . $full_dir . ' -maxdepth ' . $depth . ' \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -type f -size +' . $min_size . ' -exec du -ah {} \; | sort -rh | cut -f 2');
 
@@ -141,7 +142,7 @@ function drush_large_images_compress($dir, $min_size, $quality) {
       $temp_prefix = variable_get('file_temporary_path');
       $uri_without_scheme = ltrim(str_replace(array($public_prefix, $private_prefix, $temp_prefix), '', $path_from_drupal_root), '/');
 
-      $fids = [];
+      $fids = array();
       foreach ($fids_uris as $fid => $uri) {
         // Check if the uri without the scheme is referenced by file_managed
         if ($uri == $uri_without_scheme) {
@@ -211,10 +212,16 @@ function large_images_human_filesize($bytes, $decimals = 2) {
  *   TRUE if successful
  */
 function large_images_compress_image($filepath, $quality = 80) {
+  $backup = drush_get_option('backup', FALSE);
+  if ($backup) {
+    copy($filepath, $filepath . '_lgbak');
+  }
+
   $info = getimagesize($filepath);
 
   if ($info['mime'] == 'image/jpeg') {
     $image = imagecreatefromjpeg($filepath);
+
     if (imagejpeg($image, $filepath, $quality)) {
       return TRUE;
     }
