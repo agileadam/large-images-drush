@@ -12,6 +12,7 @@ This provides two drush commands.
 ## Warning
 
 - Run `large-images-list` before running `large-images-compress`
+- Use the `--backup` option to automatically create `originalfile.jpg_lgbak` files
 - These commands work fine in the environments where I've used them. This does not mean they'll work perfectly for you! Test before using!
 - I recommend you back up your Drupal database and whatever directory you're operating on before executing `large-images-compress`
 - `large-images-compress` is not a "smart" command. It simply overwrites the image with the desired output quality and updates the database. It does not look at the current compression level before attempting to generate the new version, though I may add this functionality to prevent trying to go from a lower quality to a higher one.
@@ -23,7 +24,7 @@ This provides two drush commands.
 - php with gd library
 - `find` command
 - `du` command
-- `sort` command
+- `sort` command (some systems may be missing the -h option; you may remove this `h` option in the code without affecting the functionality)
 - `cut` command
 
 ## Installation
